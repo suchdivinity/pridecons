@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrideCons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+    <div class="noise"></div>
+    <div class="cursor" id="cursor"></div>
+
+    <div class="nav-header">
+        <div class="logo">PrideCons<span style="color:var(--accent-pink)">.exe</span></div>
+        
+        <div class="header-links">
+            <span class="credit-text">coded by <a href="https://github.com/suchdivinity" target="_blank">suchdivinity</a></span>
+            <span class="separator">/</span>
+            <a href="https://github.com/suchdivinity" target="_blank" class="git-link">
+                <i class="ph ph-github-logo"></i> github
+            </a>
+        </div>
+    </div>
+    <br><br>
+    <div class="main-grid">
+        
+        
+        <div class="card preview-card tilt-element">
+            <h2 class="section-title">preview_</h2>
+            
+            <div class="canvas-container" id="dropZone">
+                <canvas id="mainCanvas" width="1024" height="1024" class="hidden"></canvas>
+                <div class="drag-hint">✨ Drag to move • Scroll to zoom</div>
+                <div id="placeholder" class="placeholder-box">
+                    <span>drop image here</span>
+                    <span style="font-size: 0.8rem; color: var(--text-dim)">(or click to upload)</span>
+                </div>
+            </div>
+
+            
+            <div class="zoom-controls hidden" id="zoomRow">
+                <i class="ph ph-magnifying-glass-minus" style="color:var(--text-dim)"></i>
+                <input type="range" id="zoom" min="10" max="500" value="100" class="slider zoom-slider">
+                <i class="ph ph-magnifying-glass-plus" style="color:var(--text-dim)"></i>
+                
+                <button class="btn-icon" id="resetBtn" title="Reset Position & Zoom">
+                    <i class="ph ph-arrow-counter-clockwise"></i>
+                </button>
+            </div>
+
+            <div class="action-buttons">
+                <input type="file" id="fileInput" accept="image/*" hidden>
+                <button class="btn primary" id="uploadTrigger">Upload File</button>
+                <a id="downloadBtn" class="btn secondary disabled">Download</a>
+            </div>
+        </div>
+
+        
+        <div class="card controls-card tilt-element">
+            <h2 class="section-title">config_</h2>
+            
+            <div class="config-container">
+                <div class="control-group">
+                    <label>Select Flag</label>
+                    <div class="custom-select-wrapper" id="flagDropdown">
+                        <div class="custom-select-trigger">
+                            <span id="selectedFlagText">Rainbow</span>
+                            <div class="arrow"></div>
+                        </div>
+                        <div class="custom-options"></div>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Flag Style</label>
+                    <div class="toggle-container">
+                        <button class="toggle-btn active" data-val="solid" onclick="updateFlagStyle('solid')">Solid</button>
+                        
+                        <button class="toggle-btn" data-val="dashed" onclick="updateFlagStyle('dashed')">Wedge</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Shape</label>
+                    <div class="toggle-container">
+                        <button class="toggle-btn active" data-val="circle" onclick="updateShape('circle')">Circle</button>
+                        <button class="toggle-btn" data-val="square" onclick="updateShape('square')">Square</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Style Mode</label>
+                    <div class="toggle-container">
+                        <button class="toggle-btn active" data-val="border" onclick="updateMode('border')">Border</button>
+                        <button class="toggle-btn" data-val="overlay" onclick="updateMode('overlay')">Overlay</button>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Image Effect</label>
+                    <div class="toggle-container">
+                        <button class="toggle-btn active" data-val="color" onclick="updateFilter('color')">Color</button>
+                        <button class="toggle-btn" data-val="gray" onclick="updateFilter('gray')">Grayscale</button>
+                    </div>
+                </div>
+
+                <div class="control-group" id="borderControl">
+                    <label>Border Thickness <span class="val-display" id="borderVal">10%</span></label>
+                    <input type="range" id="borderWidth" min="0" max="50" value="10" class="slider">
+                </div>
+
+                <div class="control-group hidden" id="opacityControl">
+                    <label>Overlay Opacity <span class="val-display" id="opacityVal">40%</span></label>
+                    <input type="range" id="opacity" min="0" max="100" value="40" class="slider">
+                </div>
+                
+                <div class="control-group">
+                    <label>Flag Rotation <span class="val-display" id="rotateVal">0°</span></label>
+                    <input type="range" id="rotation" min="0" max="360" value="0" step="15" class="slider">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
