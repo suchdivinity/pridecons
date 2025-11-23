@@ -1,18 +1,15 @@
 const FLAGS = {
     'rainbow': { name: 'Rainbow', colors: ['#ff0018', '#ffa52c', '#ffff41', '#008018', '#0000f9', '#86007d'] },
-    'agender': { name: 'Agender', colors: ['#000000', '#BCC4C7', '#FFFFFF', '#B5F5CC', '#FFFFFF', '#BCC4C7', '#000000'] },
     'androgyne': { name: 'Androgyne', colors: ['#FF0090', '#9833CC', '#00D4FF'] },
     'aromantic': { name: 'Aromantic', colors: ['#3DA542', '#A7D379', '#FFFFFF', '#A9A9A9', '#000000'] },
     'asexual': { name: 'Asexual', colors: ['#000000', '#A3A3A3', '#FFFFFF', '#800080'] },
-    'bigender': { name: 'Bigender', colors: ['#C479A0', '#EDA5CD', '#D6C7E8', '#FFFFFF', '#D6C7E8', '#9AC7E8', '#6D82D1'] },
     'bisexual': { name: 'Bisexual', colors: ['#D60270', '#D60270', '#9B4F96', '#0038A8', '#0038A8'] },
-    'gay': { name: 'Gay (MLM)', colors: ['#078D70', '#26CEAA', '#98E8C1', '#FFFFFF', '#7BADE2', '#5049CC', '#3D1A78'] },
+    'gay': { name: 'Gay', colors: ['#078D70', '#26CEAA', '#98E8C1', '#FFFFFF', '#7BADE2', '#5049CC', '#3D1A78'] },
     'genderfluid': { name: 'Genderfluid', colors: ['#FF75A2', '#FFFFFF', '#BE185D', '#000000', '#333EBD'] },
     'lesbian': { name: 'Lesbian', colors: ['#D52D00', '#EF7627', '#FF9A56', '#FFFFFF', '#D162A4', '#B55690', '#A30262'] },
     'nonbinary': { name: 'Non-Binary', colors: ['#FCF434', '#FFFFFF', '#9C59D1', '#2C2C2C'] },
     'pansexual': { name: 'Pansexual', colors: ['#FF218C', '#FFD800', '#21B1FF'] },
-    'transgender': { name: 'Transgender', colors: ['#5bcefa', '#f5a9b8', '#ffffff', '#f5a9b8', '#5bcefa'] },
-    'xenogender': { name: 'Xenogender', colors: ['#F5A2A2', '#F5C6A2', '#F5EBA2', '#D6F5A2', '#A2F5D6', '#A2D6F5', '#A2A2F5', '#D6A2F5', '#F5A2EB'] }
+    'transgender': { name: 'Transgender', colors: ['#5bcefa', '#f5a9b8', '#ffffff', '#f5a9b8', '#5bcefa'] }
 };
 
 const state = {
@@ -374,5 +371,6 @@ function setupCursor() {
         });
     }
 }
+
 
 init();
