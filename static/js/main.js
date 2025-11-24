@@ -214,13 +214,28 @@ resetBtn.addEventListener('click', () => {
 });
 
 function setupCanvasInteractions() {
+
     canvas.addEventListener('mousedown', startDrag);
     window.addEventListener('mousemove', drag); 
     window.addEventListener('mouseup', stopDrag);
-    canvas.addEventListener('touchstart', (e) => startDrag(e.touches[0]));
-    window.addEventListener('touchmove', (e) => drag(e.touches[0]));
+
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', stopDrag);
+
     canvas.addEventListener('wheel', handleWheel, { passive: false });
+}
+
+function handleTouchStart(e) {
+    if (e.touches.length > 1) return; 
+    if (e.cancelable) e.preventDefault();
+    startDrag(e.touches[0]);
+}
+
+function handleTouchMove(e) {
+    if (!state.isDragging) return;
+    if (e.cancelable) e.preventDefault(); 
+    drag(e.touches[0]);
 }
 
 function handleWheel(e) {
@@ -234,7 +249,7 @@ function handleWheel(e) {
     render(); 
 }
 
-function startDrag(e) {
+function startDrag(e) { 
     if (!state.image) return;
     state.isDragging = true;
     state.startX = e.clientX;
@@ -244,7 +259,6 @@ function startDrag(e) {
 
 function drag(e) {
     if (!state.isDragging) return;
-    e.preventDefault(); 
 
     const deltaX = e.clientX - state.startX;
     const deltaY = e.clientY - state.startY;
@@ -348,7 +362,6 @@ function toggleActive(fnName, val) {
 }
 
 function setupCursor() {
-
     if (window.matchMedia("(hover: hover)").matches) {
         document.body.classList.add('custom-cursor-active');
         const cursor = document.getElementById('cursor');
@@ -371,6 +384,5 @@ function setupCursor() {
         });
     }
 }
-
 
 init();
